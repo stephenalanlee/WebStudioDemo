@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lee.dao.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.lee.entity.OrderDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orderId" property="orderId" jdbcType="INTEGER" />
+    <result column="materialId" property="materialId" jdbcType="INTEGER" />
+    <result column="quantity" property="quantity" jdbcType="DOUBLE" />
+    <result column="deliverQuantity" property="deliverQuantity" jdbcType="DOUBLE" />
+    <result column="receiveQuantity" property="receiveQuantity" jdbcType="DOUBLE" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="receiveDate" property="receiveDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, orderId, materialId, quantity, deliverQuantity, receiveQuantity, price, receiveDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cpn_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cpn_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lee.entity.OrderDetail" >
+    insert into cpn_order_detail (id, orderId, materialId, 
+      quantity, deliverQuantity, receiveQuantity, 
+      price, receiveDate)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{materialId,jdbcType=INTEGER}, 
+      #{quantity,jdbcType=DOUBLE}, #{deliverQuantity,jdbcType=DOUBLE}, #{receiveQuantity,jdbcType=DOUBLE}, 
+      #{price,jdbcType=DOUBLE}, #{receiveDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lee.entity.OrderDetail" >
+    insert into cpn_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        orderId,
+      </if>
+      <if test="materialId != null" >
+        materialId,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="deliverQuantity != null" >
+        deliverQuantity,
+      </if>
+      <if test="receiveQuantity != null" >
+        receiveQuantity,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="receiveDate != null" >
+        receiveDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="materialId != null" >
+        #{materialId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=DOUBLE},
+      </if>
+      <if test="deliverQuantity != null" >
+        #{deliverQuantity,jdbcType=DOUBLE},
+      </if>
+      <if test="receiveQuantity != null" >
+        #{receiveQuantity,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="receiveDate != null" >
+        #{receiveDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lee.entity.OrderDetail" >
+    update cpn_order_detail
+    <set >
+      <if test="orderId != null" >
+        orderId = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="materialId != null" >
+        materialId = #{materialId,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=DOUBLE},
+      </if>
+      <if test="deliverQuantity != null" >
+        deliverQuantity = #{deliverQuantity,jdbcType=DOUBLE},
+      </if>
+      <if test="receiveQuantity != null" >
+        receiveQuantity = #{receiveQuantity,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="receiveDate != null" >
+        receiveDate = #{receiveDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lee.entity.OrderDetail" >
+    update cpn_order_detail
+    set orderId = #{orderId,jdbcType=INTEGER},
+      materialId = #{materialId,jdbcType=INTEGER},
+      quantity = #{quantity,jdbcType=DOUBLE},
+      deliverQuantity = #{deliverQuantity,jdbcType=DOUBLE},
+      receiveQuantity = #{receiveQuantity,jdbcType=DOUBLE},
+      price = #{price,jdbcType=DOUBLE},
+      receiveDate = #{receiveDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lee.dao.PaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.lee.entity.Payment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="targetId" property="targetId" jdbcType="INTEGER" />
+    <result column="batch" property="batch" jdbcType="INTEGER" />
+    <result column="discountRate" property="discountRate" jdbcType="DOUBLE" />
+    <result column="amount" property="amount" jdbcType="DOUBLE" />
+    <result column="paymentCut" property="paymentCut" jdbcType="DOUBLE" />
+    <result column="cutReason" property="cutReason" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="INTEGER" />
+    <result column="paidRate" property="paidRate" jdbcType="DOUBLE" />
+    <result column="createDate" property="createDate" jdbcType="DATE" />
+    <result column="creator" property="creator" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, targetId, batch, discountRate, amount, paymentCut, cutReason, category, paidRate, 
+    createDate, creator
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cpn_payment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cpn_payment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lee.entity.Payment" >
+    insert into cpn_payment (id, targetId, batch, 
+      discountRate, amount, paymentCut, 
+      cutReason, category, paidRate, 
+      createDate, creator)
+    values (#{id,jdbcType=INTEGER}, #{targetId,jdbcType=INTEGER}, #{batch,jdbcType=INTEGER}, 
+      #{discountRate,jdbcType=DOUBLE}, #{amount,jdbcType=DOUBLE}, #{paymentCut,jdbcType=DOUBLE}, 
+      #{cutReason,jdbcType=VARCHAR}, #{category,jdbcType=INTEGER}, #{paidRate,jdbcType=DOUBLE}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lee.entity.Payment" >
+    insert into cpn_payment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="targetId != null" >
+        targetId,
+      </if>
+      <if test="batch != null" >
+        batch,
+      </if>
+      <if test="discountRate != null" >
+        discountRate,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="paymentCut != null" >
+        paymentCut,
+      </if>
+      <if test="cutReason != null" >
+        cutReason,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="paidRate != null" >
+        paidRate,
+      </if>
+      <if test="createDate != null" >
+        createDate,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="targetId != null" >
+        #{targetId,jdbcType=INTEGER},
+      </if>
+      <if test="batch != null" >
+        #{batch,jdbcType=INTEGER},
+      </if>
+      <if test="discountRate != null" >
+        #{discountRate,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="paymentCut != null" >
+        #{paymentCut,jdbcType=DOUBLE},
+      </if>
+      <if test="cutReason != null" >
+        #{cutReason,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=INTEGER},
+      </if>
+      <if test="paidRate != null" >
+        #{paidRate,jdbcType=DOUBLE},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lee.entity.Payment" >
+    update cpn_payment
+    <set >
+      <if test="targetId != null" >
+        targetId = #{targetId,jdbcType=INTEGER},
+      </if>
+      <if test="batch != null" >
+        batch = #{batch,jdbcType=INTEGER},
+      </if>
+      <if test="discountRate != null" >
+        discountRate = #{discountRate,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="paymentCut != null" >
+        paymentCut = #{paymentCut,jdbcType=DOUBLE},
+      </if>
+      <if test="cutReason != null" >
+        cutReason = #{cutReason,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=INTEGER},
+      </if>
+      <if test="paidRate != null" >
+        paidRate = #{paidRate,jdbcType=DOUBLE},
+      </if>
+      <if test="createDate != null" >
+        createDate = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lee.entity.Payment" >
+    update cpn_payment
+    set targetId = #{targetId,jdbcType=INTEGER},
+      batch = #{batch,jdbcType=INTEGER},
+      discountRate = #{discountRate,jdbcType=DOUBLE},
+      amount = #{amount,jdbcType=DOUBLE},
+      paymentCut = #{paymentCut,jdbcType=DOUBLE},
+      cutReason = #{cutReason,jdbcType=VARCHAR},
+      category = #{category,jdbcType=INTEGER},
+      paidRate = #{paidRate,jdbcType=DOUBLE},
+      createDate = #{createDate,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

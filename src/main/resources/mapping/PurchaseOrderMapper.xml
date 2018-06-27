@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lee.dao.PurchaseOrderDao">
+    <sql id="columnList">
+        orderId,
+        status,
+        projectId,
+        supplierId,
+        customerId,
+        receiverAddress,
+        contacts,
+        contactsTel,
+        deliverInsuranceRate,
+        creator,
+        createDate,
+        remark,
+        protocolId,
+        orderNum,
+        amount,
+        exAmount,
+        receiveDate
+    </sql>
+    <sql id="queryWhereList">
+        <if test="orderId != null">
+            orderId = #{orderId,jdbcType=INTEGER},
+        </if>
+        <if test="status != null">
+            status = #{status,jdbcType=INTEGER},
+        </if>
+        <if test="projectId != null">
+            projectId = #{projectId,jdbcType=INTEGER},
+        </if>
+        <if test="supplierId != null">
+            supplierId = #{supplierId,jdbcType=INTEGER},
+        </if>
+        <if test="customerId != null">
+            customerId = #{customerId,jdbcType=INTEGER},
+        </if>
+        <if test="receiverAddress != null">
+            receiverAddress = #{receiverAddress,jdbcType=VARCHAR},
+        </if>
+        <if test="contacts != null">
+            contacts = #{contacts,jdbcType=VARCHAR},
+        </if>
+        <if test="contactsTel != null">
+            contactsTel = #{contactsTel,jdbcType=VARCHAR},
+        </if>
+        <if test="deliverInsuranceRate != null">
+            deliverInsuranceRate = #{deliverInsuranceRate,jdbcType=DOUBLE},
+        </if>
+        <if test="creator != null">
+            creator = #{creator,jdbcType=INTEGER},
+        </if>
+        <if test="createDate != null">
+            createDate = #{createDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="remark != null">
+            remark = #{remark,jdbcType=VARCHAR},
+        </if>
+        <if test="protocolId != null">
+            protocolId = #{protocolId,jdbcType=VARCHAR},
+        </if>
+        <if test="orderNum != null">
+            orderNum = #{orderNum,jdbcType=VARCHAR},
+        </if>
+        <if test="amount != null">
+            amount = #{amount,jdbcType=DOUBLE},
+        </if>
+        <if test="exAmount != null">
+            exAmount = #{exAmount,jdbcType=DOUBLE},
+        </if>
+        <if test="receiveDate != null">
+            receiveDate = #{receiveDate,jdbcType=TIMESTAMP},
+        </if>
+    </sql>
+
+    <sql id="valuesList">
+        #{orderId,jdbcType=INTEGER},
+        #{status,jdbcType=INTEGER},
+        #{projectId,jdbcType=INTEGER},
+        #{supplierId,jdbcType=INTEGER},
+        #{customerId,jdbcType=INTEGER},
+        #{receiverAddress,jdbcType=VARCHAR},
+        #{contacts,jdbcType=VARCHAR},
+        #{contactsTel,jdbcType=VARCHAR},
+        #{deliverInsuranceRate,jdbcType=DOUBLE},
+        #{creator,jdbcType=INTEGER},
+        #{createDate,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR},
+        #{protocolId,jdbcType=VARCHAR},
+        #{orderNum,jdbcType=VARCHAR},
+        #{amount,jdbcType=DOUBLE},
+        #{exAmount,jdbcType=DOUBLE},
+        #{receiveDate,jdbcType=TIMESTAMP}
+    </sql>
+
+    <select id="selectByPrimaryKey" resultType="purchaseOrder" parameterType="java.lang.Integer">
+        select
+        <include refid="columnList"/>
+        from cpn_purchase_order
+        where orderId = #{orderId,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectList" resultType="purchaseOrder" parameterType="java.lang.Integer">
+        select
+        <include refid="columnList"/>
+        from cpn_purchase_order
+        <where>
+            <include refid="queryWhereList"/>
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from cpn_purchase_order
+        where orderId = #{orderId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="purchaseOrder">
+        insert into cpn_purchase_order (<include refid="columnList"/>)
+        values (<include refid="valuesList"/>)
+    </insert>
+
+    <insert id="insertSelective" parameterType="purchaseOrder">
+        insert into cpn_purchase_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                orderId,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="projectId != null">
+                projectId,
+            </if>
+            <if test="supplierId != null">
+                supplierId,
+            </if>
+            <if test="customerId != null">
+                customerId,
+            </if>
+            <if test="receiverAddress != null">
+                receiverAddress,
+            </if>
+            <if test="contacts != null">
+                contacts,
+            </if>
+            <if test="contactsTel != null">
+                contactsTel,
+            </if>
+            <if test="deliverInsuranceRate != null">
+                deliverInsuranceRate,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createDate != null">
+                createDate,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="protocolId != null">
+                protocolId,
+            </if>
+            <if test="orderNum != null">
+                orderNum,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="exAmount != null">
+                exAmount,
+            </if>
+            <if test="receiveDate != null">
+                receiveDate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=INTEGER},
+            </if>
+            <if test="supplierId != null">
+                #{supplierId,jdbcType=INTEGER},
+            </if>
+            <if test="customerId != null">
+                #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="receiverAddress != null">
+                #{receiverAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="contacts != null">
+                #{contacts,jdbcType=VARCHAR},
+            </if>
+            <if test="contactsTel != null">
+                #{contactsTel,jdbcType=VARCHAR},
+            </if>
+            <if test="deliverInsuranceRate != null">
+                #{deliverInsuranceRate,jdbcType=DOUBLE},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="protocolId != null">
+                #{protocolId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderNum != null">
+                #{orderNum,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DOUBLE},
+            </if>
+            <if test="exAmount != null">
+                #{exAmount,jdbcType=DOUBLE},
+            </if>
+            <if test="receiveDate != null">
+                #{receiveDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="purchaseOrder">
+        update cpn_purchase_order
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="projectId != null">
+                projectId = #{projectId,jdbcType=INTEGER},
+            </if>
+            <if test="supplierId != null">
+                supplierId = #{supplierId,jdbcType=INTEGER},
+            </if>
+            <if test="customerId != null">
+                customerId = #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="receiverAddress != null">
+                receiverAddress = #{receiverAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="contacts != null">
+                contacts = #{contacts,jdbcType=VARCHAR},
+            </if>
+            <if test="contactsTel != null">
+                contactsTel = #{contactsTel,jdbcType=VARCHAR},
+            </if>
+            <if test="deliverInsuranceRate != null">
+                deliverInsuranceRate = #{deliverInsuranceRate,jdbcType=DOUBLE},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="protocolId != null">
+                protocolId = #{protocolId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderNum != null">
+                orderNum = #{orderNum,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DOUBLE},
+            </if>
+            <if test="exAmount != null">
+                exAmount = #{exAmount,jdbcType=DOUBLE},
+            </if>
+            <if test="receiveDate != null">
+                receiveDate = #{receiveDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where orderId = #{orderId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="purchaseOrder">
+    update cpn_purchase_order
+    set status = #{status,jdbcType=INTEGER},
+      projectId = #{projectId,jdbcType=INTEGER},
+      supplierId = #{supplierId,jdbcType=INTEGER},
+      customerId = #{customerId,jdbcType=INTEGER},
+      receiverAddress = #{receiverAddress,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      contactsTel = #{contactsTel,jdbcType=VARCHAR},
+      deliverInsuranceRate = #{deliverInsuranceRate,jdbcType=DOUBLE},
+      creator = #{creator,jdbcType=INTEGER},
+      createDate = #{createDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      protocolId = #{protocolId,jdbcType=VARCHAR},
+      orderNum = #{orderNum,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DOUBLE},
+      exAmount = #{exAmount,jdbcType=DOUBLE},
+      receiveDate = #{receiveDate,jdbcType=TIMESTAMP}
+    where orderId = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>
